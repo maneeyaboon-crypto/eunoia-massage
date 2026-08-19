@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EUNOIA — คู่มือขึ้นเว็บจริง</title>
+<style>
+  :root{
+    --sand-50:#faf7f2; --sand-100:#f4eee4; --sand-200:#e9dfd0; --sand-300:#d7c8b4;
+    --ink-800:#2c2722; --ink-600:#5b5147; --ink-400:#8a7f72;
+    --jade:#2f6e57; --jade-50:#eef6f2; --jade-200:#bfe0d2;
+    --amber-50:#fffbeb; --amber-200:#fde68a; --amber-800:#92400e;
+    --rose-50:#fff1f2; --rose-200:#fecdd3; --rose-700:#be123c;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--sand-50); color:var(--ink-800);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans Thai","Sarabun",
+                "Leelawadee UI","Thonburi",sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:32px 20px 80px}
+  header{text-align:center;margin-bottom:28px}
+  .logo{
+    width:52px;height:52px;border-radius:16px;background:var(--jade);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;
+    margin:0 auto 12px
+  }
+  h1{font-size:26px;margin:0 0 6px}
+  .sub{color:var(--ink-400);font-size:14px;margin:0}
+  .prog{
+    position:sticky;top:0;z-index:5;background:rgba(250,247,242,.94);
+    backdrop-filter:blur(8px);padding:12px 0 10px;margin-bottom:18px;
+    border-bottom:1px solid var(--sand-200)
+  }
+  .bar{height:10px;border-radius:999px;background:var(--sand-200);overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:var(--jade);transition:width .25s}
+  .progtxt{font-size:13px;color:var(--ink-600);margin-top:6px;text-align:center}
+  section{
+    background:#fff;border:1px solid var(--sand-200);border-radius:18px;
+    padding:20px 22px;margin-bottom:16px
+  }
+  .step-head{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+  .num{
+    flex:0 0 34px;height:34px;border-radius:11px;background:var(--jade-50);color:var(--jade);
+    display:flex;align-items:center;justify-content:center;font-weight:700
+  }
+  h2{font-size:19px;margin:0}
+  .time{font-size:12px;color:var(--ink-400);margin:2px 0 14px 46px}
+  ol{margin:0;padding-left:0;list-style:none;counter-reset:s}
+  ol li{
+    counter-increment:s;position:relative;padding:10px 0 10px 34px;
+    border-top:1px dashed var(--sand-200)
+  }
+  ol li:first-child{border-top:0}
+  ol li::before{
+    content:counter(s);position:absolute;left:0;top:12px;width:22px;height:22px;
+    border-radius:7px;background:var(--sand-100);color:var(--ink-600);
+    font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center
+  }
+  code{
+    background:var(--sand-100);border:1px solid var(--sand-200);border-radius:6px;
+    padding:1px 6px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;
+    word-break:break-all
+  }
+  .copy{
+    display:flex;gap:8px;align-items:center;margin:8px 0;background:var(--sand-50);
+    border:1px solid var(--sand-200);border-radius:10px;padding:8px 10px
+  }
+  .copy code{background:transparent;border:0;flex:1}
+  .copy button{
+    border:0;border-radius:8px;background:var(--jade);color:#fff;padding:6px 12px;
+    font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;flex:0 0 auto
+  }
+  .tip,.warn,.ok{
+    border-radius:12px;padding:12px 14px;font-size:13.5px;margin:12px 0 0;line-height:1.7
+  }
+  .tip{background:var(--sand-50);border:1px solid var(--sand-200);color:var(--ink-600)}
+  .warn{background:var(--amber-50);border:1px solid var(--amber-200);color:var(--amber-800)}
+  .ok{background:var(--jade-50);border:1px solid var(--jade-200);color:#275646}
+  label.chk{
+    display:flex;gap:10px;align-items:flex-start;cursor:pointer;
+    background:var(--sand-50);border:1px solid var(--sand-200);border-radius:12px;
+    padding:12px 14px;margin-top:14px;font-weight:600;font-size:14px
+  }
+  label.chk input{width:22px;height:22px;accent-color:var(--jade);margin:1px 0 0}
+  label.chk.done{background:var(--jade-50);border-color:var(--jade-200);color:#275646}
+  table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13.5px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--sand-200);vertical-align:top}
+  th{background:var(--sand-50);font-size:12px;color:var(--ink-400);font-weight:700}
+  .faq h3{font-size:15px;margin:16px 0 4px}
+  .faq p{margin:0;font-size:13.5px;color:var(--ink-600)}
+  a{color:var(--jade)}
+  .foot{text-align:center;color:var(--ink-400);font-size:12px;margin-top:28px}
+  @media print{.prog{display:none} section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="logo">E</div>
+  <h1>EUNOIA Massage — คู่มือขึ้นเว็บจริง</h1>
+  <p class="sub">ทำตามทีละข้อ ประมาณ 20–25 นาที · ฟรีทั้งหมด ไม่ต้องผูกบัตร</p>
+</header>
+
+<div class="prog">
+  <div class="bar"><i id="bar"></i></div>
+  <p class="progtxt" id="progtxt">ทำเสร็จ 0 จาก 4 ขั้น</p>
+</div>
+
+<div class="tip">
+  <strong>ทำไมต้องทำเองบางส่วน:</strong> ขั้นตอนพวกนี้ต้องล็อกอินด้วยบัญชีของพี่เอง
+  (Supabase / GitHub / Vercel) ซึ่งเป็นเจ้าของข้อมูลและเจ้าของเว็บ — ฉันเข้าบัญชีแทนไม่ได้
+  แต่โค้ดและไฟล์ SQL เตรียมไว้ให้ครบแล้ว เหลือแค่ก๊อป-วาง-กด
+</div>
+
+<section>
+  <div class="step-head"><div class="num">1</div><h2>สร้างฐานข้อมูล (Supabase)</h2></div>
+  <p class="time">ประมาณ 7 นาที · ที่เก็บข้อมูลจริงของร้าน</p>
+  <ol>
+    <li>เข้า <a href="https://supabase.com" target="_blank">supabase.com</a> → กด <strong>Start your project</strong> → เข้าด้วยบัญชี Google ของร้าน</li>
+    <li>กด <strong>New project</strong> · ชื่อ <code>eunoia</code> · <strong>Database Password</strong> ตั้งรหัสแล้วจดเก็บไว้ · <strong>Region</strong> เลือก <code>Southeast Asia (Singapore)</code> (ใกล้ไทยที่สุด = เร็วที่สุด) → <strong>Create new project</strong> → รอประมาณ 2 นาที</li>
+    <li>เมนูซ้าย → <strong>SQL Editor</strong> → <strong>New query</strong></li>
+    <li>เปิดไฟล์ <code>ติดตั้งใช้งานจริง.sql</code> → คัดลอก<strong>ทั้งไฟล์</strong> → วางในช่อง → กด <strong>Run</strong> (หรือ Ctrl/⌘ + Enter)
+      <div class="tip">ต้องเห็นคำว่า <strong>Success</strong> · ถ้ามีข้อความ <strong>NOTICE</strong> สีเหลืองไม่ต้องกังวล เป็นเรื่องปกติ<br>
+      อยากลองเล่นก่อนด้วยข้อมูลตัวอย่าง ให้ใช้ไฟล์ <code>ติดตั้งพร้อมข้อมูลตัวอย่าง.sql</code> แทน</div>
+    </li>
+    <li><strong>ปิดการยืนยันอีเมล</strong> → เมนู <strong>Authentication</strong> → <strong>Sign In / Providers</strong> → <strong>Email</strong> → ปิดสวิตช์ <strong>Confirm email</strong> → <strong>Save</strong>
+      <div class="warn"><strong>ข้อนี้สำคัญมาก</strong> — ถ้าไม่ปิด พอสมัครบัญชีแล้วจะเข้าใช้งานไม่ได้จนกว่าจะไปกดลิงก์ยืนยันในอีเมล ซึ่งพนักงานหน้าร้านมักไม่มีอีเมลร้าน</div>
+    </li>
+    <li>ไปที่ <strong>Project Settings</strong> (รูปเฟือง) → <strong>API</strong> → คัดลอกเก็บไว้ 2 ค่า:
+      <table>
+        <tr><th>ชื่อค่า</th><th>หน้าตาประมาณนี้</th></tr>
+        <tr><td><strong>Project URL</strong></td><td><code>https://abcdxyz.supabase.co</code></td></tr>
+        <tr><td><strong>anon public key</strong><br><span style="color:#8a7f72;font-size:12px">(บางหน้าเขียนว่า publishable key)</span></td><td><code>eyJhbGciOi…</code> หรือ <code>sb_publishable_…</code> (ยาวมาก)</td></tr>
+      </table>
+      <div class="tip">คีย์ตัวนี้ปลอดภัยที่จะอยู่ในเว็บ เพราะระบบล็อกสิทธิ์ไว้ที่ฐานข้อมูล (RLS) แล้ว —
+      <strong>ห้าม</strong>ใช้ค่า <code>service_role</code> เด็ดขาด</div>
+    </li>
+  </ol>
+  <label class="chk"><input type="checkbox" data-step><span>ขั้นที่ 1 เสร็จแล้ว — มี Project URL และ anon key อยู่ในมือ</span></label>
+</section>
+
+<section>
+  <div class="step-head"><div class="num">2</div><h2>อัปโหลดโค้ด (GitHub)</h2></div>
+  <p class="time">ประมาณ 5 นาที · ที่เก็บโค้ด เพื่อให้เว็บอัปเดตได้ทีหลัง</p>
+  <ol>
+    <li>แตกไฟล์ <code>eunoia-production.zip</code> ให้เรียบร้อยก่อน (จะได้โฟลเดอร์ที่มี <code>package.json</code> อยู่ชั้นบนสุด)</li>
+    <li>เข้า <a href="https://github.com/signup" target="_blank">github.com/signup</a> → สมัครฟรี (ถ้ามีบัญชีแล้วข้ามไป)</li>
+    <li>กด <strong>+</strong> มุมขวาบน → <strong>New repository</strong> · ชื่อ <code>eunoia-massage</code> · เลือก <strong>Private</strong> → <strong>Create repository</strong></li>
+    <li>ในหน้าที่เพิ่งสร้าง กดลิงก์ <strong>uploading an existing file</strong></li>
+    <li>ลากไฟล์และโฟลเดอร์<strong>ทั้งหมดที่อยู่ข้างใน</strong>โฟลเดอร์ที่แตกไว้ (ไม่ใช่ลากตัวโฟลเดอร์) มาวางในกรอบ → รอขึ้นครบ → กด <strong>Commit changes</strong>
+      <div class="warn">เช็กว่าในหน้า repo เห็นไฟล์ <code>package.json</code> อยู่ชั้นบนสุด ถ้าเห็นเป็นโฟลเดอร์ชื่อ <code>eunoia</code> ชั้นเดียวแทน Vercel จะหาโปรเจกต์ไม่เจอ — ให้ลบแล้วลากใหม่จากข้างในโฟลเดอร์</div>
+    </li>
+  </ol>
+  <label class="chk"><input type="checkbox" data-step><span>ขั้นที่ 2 เสร็จแล้ว — โค้ดอยู่บน GitHub และเห็น package.json ชั้นบนสุด</span></label>
+</section>
+
+<section>
+  <div class="step-head"><div class="num">3</div><h2>เอาขึ้นเว็บ (Vercel)</h2></div>
+  <p class="time">ประมาณ 5 นาที · ได้ลิงก์เว็บจริงที่เปิดจากที่ไหนก็ได้</p>
+  <ol>
+    <li>เข้า <a href="https://vercel.com/signup" target="_blank">vercel.com/signup</a> → <strong>Continue with GitHub</strong> → อนุญาตให้เข้าถึง</li>
+    <li>กด <strong>Add New…</strong> → <strong>Project</strong> → หา <code>eunoia-massage</code> → <strong>Import</strong></li>
+    <li>เปิดหัวข้อ <strong>Environment Variables</strong> แล้วใส่ 2 ค่า (ชื่อต้องตรงตัวพิมพ์ใหญ่-เล็ก):
+      <div class="copy"><code>NEXT_PUBLIC_SUPABASE_URL</code><button onclick="cp(this,'NEXT_PUBLIC_SUPABASE_URL')">คัดลอกชื่อ</button></div>
+      <div class="copy"><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code><button onclick="cp(this,'NEXT_PUBLIC_SUPABASE_ANON_KEY')">คัดลอกชื่อ</button></div>
+      ช่อง Value ใส่ Project URL และ anon key จากขั้นที่ 1 ตามลำดับ
+    </li>
+    <li>กด <strong>Deploy</strong> → รอประมาณ 2 นาที → ขึ้นรูปพลุ 🎉 แล้วได้ลิงก์ <code>https://eunoia-massage.vercel.app</code></li>
+  </ol>
+  <div class="tip"><strong>ทีหลังอยากแก้อะไร</strong> — บอกฉันได้เลย ฉันส่งไฟล์ที่แก้แล้วให้ พี่อัปทับใน GitHub
+  (กดที่ไฟล์ → รูปดินสอ → วางทับ → Commit) แล้ว Vercel จะอัปเดตเว็บให้เองภายใน 2 นาที ไม่ต้องทำขั้นที่ 1–3 ใหม่</div>
+  <label class="chk"><input type="checkbox" data-step><span>ขั้นที่ 3 เสร็จแล้ว — เปิดลิงก์เว็บได้ เห็นหน้าเข้าสู่ระบบ</span></label>
+</section>
+
+<section>
+  <div class="step-head"><div class="num">4</div><h2>เปิดใช้งานวันแรก</h2></div>
+  <p class="time">ประมาณ 5 นาที</p>
+  <ol>
+    <li>เปิดลิงก์เว็บ → กด <strong>สมัครบัญชี</strong> → ใส่อีเมล + รหัสของพี่
+      <div class="ok"><strong>บัญชีแรกที่สมัคร = เจ้าของร้านอัตโนมัติ</strong> (เห็นการเงิน แก้ราคา ยกเลิกรายการ ปิดวันได้)
+      คนที่สมัครหลังจากนั้นจะเป็น <strong>พนักงานหน้าร้าน</strong> เอง — ดังนั้นให้พี่สมัครก่อนคนอื่นเสมอ</div>
+    </li>
+    <li><strong>ตั้งค่าระบบ → หมอนวด</strong> → เพิ่มชื่อหมอนวดจริงทั้งหมด</li>
+    <li><strong>ตั้งค่าระบบ → บริการ</strong> → ตรวจราคาและค่าแรงให้ตรงกับร้าน
+      <div class="warn">ยังค้างรอพี่ยืนยัน: ค่าแรง <strong>นวดน้ำมันมะพร้าวร้อน ฿600</strong> · <strong>ขัดส้นเท้า ฿500/30 นาที</strong> ·
+      <strong>นวดหน้าและหัว ฿800</strong> (ตอนนี้ใส่ ฿180 / ฿100 / ฿180 ไว้ก่อน) และ <strong>นวดหน้า</strong> ยังปิดใช้งานอยู่เพราะไม่มีราคา</div>
+    </li>
+    <li><strong>ตั้งค่าระบบ → ทั่วไป</strong> → เลือกว่าครบเวลาแล้วให้ปิดงานเองทันที หรือผ่อนผันกี่นาที</li>
+    <li><strong>ตั้งค่าระบบ → Google Sheets</strong> → ทำตามขั้นตอนในหน้านั้น (วางโค้ดจาก <code>EUNOIA-AppsScript.gs</code> ในชีต → เอาลิงก์ /exec มาวาง) → กด <strong>ทดสอบการเชื่อมต่อ</strong></li>
+    <li>ให้พนักงานเปิดลิงก์เดียวกันแล้ว <strong>สมัครบัญชีของตัวเอง</strong> — ได้สิทธิ์พนักงานหน้าร้านอัตโนมัติ</li>
+    <li>บน iPad: เปิดลิงก์ใน Safari → ปุ่มแชร์ → <strong>เพิ่มไปยังหน้าจอโฮม</strong> → ใช้เหมือนแอปเต็มจอ</li>
+  </ol>
+  <label class="chk"><input type="checkbox" data-step><span>ขั้นที่ 4 เสร็จแล้ว — พร้อมเปิดร้านใช้จริง</span></label>
+</section>
+
+<section class="faq">
+  <h2 style="font-size:19px;margin:0 0 4px">แก้ปัญหาที่อาจเจอ</h2>
+  <h3>สมัครบัญชีแล้วเข้าไม่ได้ / ขึ้นว่าต้องยืนยันอีเมล</h3>
+  <p>ยังไม่ได้ปิด <strong>Confirm email</strong> ในขั้นที่ 1 ข้อ 5 — ปิดแล้วสมัครใหม่อีกครั้ง</p>
+
+  <h3>เปิดเว็บแล้วขึ้นหน้าขาว หรือขึ้น error เรื่อง Supabase</h3>
+  <p>ชื่อ Environment Variables พิมพ์ไม่ตรง หรือใส่ค่าสลับกัน → Vercel → Settings → Environment Variables →
+  แก้ให้ตรง แล้วไปแท็บ Deployments กด <strong>Redeploy</strong> (ต้อง Redeploy ทุกครั้งที่แก้ค่าพวกนี้)</p>
+
+  <h3>Vercel ขึ้น Build Failed</h3>
+  <p>เกือบทุกครั้งเกิดจากไฟล์อัปไม่ครบ หรือโครงสร้างโฟลเดอร์ซ้อนกัน — เช็กว่าใน repo มี <code>package.json</code>,
+  โฟลเดอร์ <code>src</code> และ <code>next.config.mjs</code> อยู่ชั้นบนสุด ถ้าไม่ใช่ให้ลากไฟล์ขึ้นใหม่</p>
+
+  <h3>ส่งเข้า Google Sheets ไม่สำเร็จ</h3>
+  <p>ตอน Deploy ใน Apps Script ต้องเลือก <strong>ผู้ที่มีสิทธิ์เข้าถึง: ทุกคน (Anyone)</strong> และใช้ลิงก์ที่ลงท้ายด้วย
+  <code>/exec</code> · รหัสลับต้องตรงกับบรรทัด <code>SECRET</code> ในโค้ด · แก้แล้วกดส่งซ้ำได้เลย ยอดในระบบไม่หาย</p>
+
+  <h3>ค่าใช้จ่าย</h3>
+  <p>Supabase และ Vercel มีแพ็กเกจฟรีที่เพียงพอกับร้านขนาดนี้สบาย ๆ ไม่ต้องผูกบัตร ·
+  ถ้าวันหนึ่งอยากใช้ชื่อเว็บของร้านเอง (เช่น eunoia.com) ค่อยซื้อโดเมนแล้วผูกกับ Vercel ได้</p>
+
+  <h3>ข้อมูลปลอดภัยแค่ไหน</h3>
+  <p>ข้อมูลอยู่ในฐานข้อมูลของพี่เอง · พนักงานหน้าร้านเห็นหน้าการเงินไม่ได้ · ลบรายการเงินไม่ได้เลย
+  (ยกเลิกได้เฉพาะเจ้าของร้าน และต้องใส่เหตุผล) · ทุกการแก้ไขราคา/ค่าแรง/หมอนวด ถูกบันทึกว่าใครแก้ตอนไหน</p>
+</section>
+
+<p class="foot">EUNOIA Massage Management System · คู่มือนี้ติ๊กเก็บไว้ได้ระหว่างทำ (ปิดหน้าแล้วเริ่มใหม่)</p>
+</div>
+
+<script>
+  const boxes = [...document.querySelectorAll('input[data-step]')];
+  function sync() {
+    const done = boxes.filter(b => b.checked).length;
+    document.getElementById('bar').style.width = (done / boxes.length * 100) + '%';
+    document.getElementById('progtxt').textContent =
+      done === boxes.length ? 'เสร็จครบทุกขั้นแล้ว 🎉 เปิดร้านใช้จริงได้เลย'
+                            : 'ทำเสร็จ ' + done + ' จาก ' + boxes.length + ' ขั้น';
+    boxes.forEach(b => b.closest('label').classList.toggle('done', b.checked));
+  }
+  boxes.forEach(b => b.addEventListener('change', sync));
+  sync();
+
+  function cp(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const old = btn.textContent;
+      btn.textContent = 'คัดลอกแล้ว ✓';
+      setTimeout(() => { btn.textContent = old; }, 1500);
+    }).catch(() => { btn.textContent = 'คัดลอกไม่ได้'; });
+  }
+</script>
+</body>
+</html>
