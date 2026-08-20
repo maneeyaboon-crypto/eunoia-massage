@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useShop } from "@/components/ShopProvider";
 import { supabaseBrowser } from "@/lib/supabase/client";
@@ -30,6 +31,11 @@ export default function QueuePage() {
     const inQueue = new Set(queue.map((q) => q.therapist_id));
     return therapists.filter((t) => t.is_active && !t.is_runner && !inQueue.has(t.id));
   }, [therapists, queue]);
+
+  const activeTherapistCount = useMemo(
+    () => therapists.filter((t) => t.is_active && !t.is_runner).length,
+    [therapists],
+  );
 
   const runnerCount = queue.filter((q) => q.entry_type === "runner").length;
 
@@ -247,7 +253,22 @@ export default function QueuePage() {
       <section className="card card-pad">
         <p className="section-title mb-3">ลงชื่อเข้าทำงาน</p>
         {notCheckedIn.length === 0 ? (
-          <p className="text-sm text-ink-400">หมอนวดที่เปิดใช้งานลงคิวครบแล้ว</p>
+          activeTherapistCount === 0 ? (
+            <div className="rounded-xl bg-amber-50 px-4 py-3 ring-1 ring-amber-200">
+              <p className="text-sm font-semibold text-amber-800">
+                ยังไม่มีชื่อหมอนวดในระบบ
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-amber-800">
+                ต้องเพิ่มชื่อหมอนวดก่อนถึงจะลงคิวได้ — ไปที่{" "}
+                <Link href="/settings" className="font-semibold underline">
+                  ตั้งค่า → หมอนวด → + เพิ่มหมอนวด
+                </Link>{" "}
+                แล้วกลับมาหน้านี้ ปุ่มชื่อจะขึ้นให้กดลงคิว
+              </p>
+            </div>
+          ) : (
+            <p className="text-sm text-ink-400">หมอนวดที่เปิดใช้งานลงคิวครบแล้ว</p>
+          )
         ) : (
           <div className="flex flex-wrap gap-2">
             {notCheckedIn.map((t) => (
