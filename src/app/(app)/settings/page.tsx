@@ -13,14 +13,22 @@ type Tab = "general" | "services" | "therapists" | "users" | "sheets";
 
 export default function SettingsPage() {
   const { isOwner } = useShop();
-  const [tab, setTab] = useState<Tab>("general");
+  const [tab, setTab] = useState<Tab>(isOwner ? "general" : "therapists");
 
+  // พนักงานหน้าร้านเข้าได้เฉพาะแท็บ "หมอนวด" — เพิ่มชื่อหมอใหม่ได้เอง
+  // ราคา ค่าแรง ผู้ใช้งาน และ Google Sheets ยังเป็นของเจ้าของร้านเท่านั้น
   if (!isOwner) {
     return (
-      <div className="card card-pad">
-        <p className="font-semibold text-ink-800">เฉพาะเจ้าของร้านเท่านั้น</p>
-        <p className="mt-1 text-sm text-ink-500">
-          หน้าตั้งค่าบริการ ราคา และข้อมูลหมอนวด เปิดให้เฉพาะบัญชีเจ้าของร้าน
+      <div className="space-y-5">
+        <div>
+          <h1 className="text-2xl font-bold text-ink-800">หมอนวด</h1>
+          <p className="mt-1 text-sm text-ink-400">
+            เพิ่มชื่อหมอนวดใหม่ หรือแก้ข้อมูลได้ที่นี่ — แล้วไปลงคิวที่หน้า &quot;คิววันนี้&quot;
+          </p>
+        </div>
+        <TherapistsSettings />
+        <p className="rounded-xl bg-sand-50 px-4 py-3 text-xs leading-relaxed text-ink-400 ring-1 ring-sand-300">
+          หน้าตั้งค่าราคา ค่าแรง ผู้ใช้งาน และ Google Sheets เปิดให้เฉพาะบัญชีเจ้าของร้าน
         </p>
       </div>
     );
