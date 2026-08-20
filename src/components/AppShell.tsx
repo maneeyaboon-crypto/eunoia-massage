@@ -13,7 +13,7 @@ const NAV = [
   { href: "/history", label: "ประวัติ", en: "History", icon: "🧾", ownerOnly: false },
   { href: "/finance", label: "การเงิน", en: "Finance", icon: "📊", ownerOnly: true },
   { href: "/reports", label: "รายงาน / ปิดวัน", en: "Reports", icon: "🗂️", ownerOnly: true },
-  { href: "/settings", label: "ตั้งค่า", en: "Settings", icon: "⚙️", ownerOnly: true },
+  { href: "/settings", label: "ตั้งค่า", en: "Settings", icon: "⚙️", ownerOnly: false },
   { href: "/audit", label: "บันทึกการแก้ไข", en: "Audit", icon: "🔍", ownerOnly: true },
 ];
 
