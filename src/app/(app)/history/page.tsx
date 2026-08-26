@@ -213,7 +213,7 @@ export default function HistoryPage() {
           </p>
         </div>
         <button className="btn-secondary" onClick={exportCsv}>
-          บันทึกเป็นไฟล์ Excel (CSV)
+          ⬇️ บันทึกเป็นไฟล์ Excel (CSV)
         </button>
       </div>
 
