@@ -147,7 +147,7 @@ export default function ReportsPage() {
             />
           </div>
           <button className="btn-secondary" onClick={() => window.print()}>
-            🖨️ พิมพ์รายงาน
+            <span className="mr-1.5" aria-hidden>🖨️</span>พิมพ์รายงาน
           </button>
           {settings.sheets_webapp_url && (
             <button
@@ -155,7 +155,13 @@ export default function ReportsPage() {
               disabled={sheetBusy || loading}
               onClick={() => void sendToSheets()}
             >
-              {sheetBusy ? "กำลังส่ง…" : "📗 เซฟลง Google Sheets"}
+              {sheetBusy ? (
+                "กำลังส่ง…"
+              ) : (
+                <>
+                  <span className="mr-1.5" aria-hidden>📗</span>เซฟลง Google Sheets
+                </>
+              )}
             </button>
           )}
           {isOwner && (
@@ -164,7 +170,13 @@ export default function ReportsPage() {
               disabled={loading}
               onClick={() => setConfirmOpen(true)}
             >
-              {closing ? "ปิดวันอีกครั้ง (อัปเดตยอดที่บันทึกไว้)" : "🔒 ปิดวัน"}
+              {closing ? (
+                "ปิดวันอีกครั้ง (อัปเดตยอดที่บันทึกไว้)"
+              ) : (
+                <>
+                  <span className="mr-1.5" aria-hidden>🔒</span>ปิดวัน
+                </>
+              )}
             </button>
           )}
         </div>
