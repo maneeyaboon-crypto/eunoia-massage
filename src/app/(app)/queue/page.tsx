@@ -229,7 +229,7 @@ export default function QueuePage() {
           </div>
           <button className="btn-primary !bg-amber-600 hover:!bg-amber-700" disabled={busy}
             onClick={() => void callRunner("")}>
-            ⚡ เรียกหมอวิ่ง
+            เรียกหมอวิ่ง
           </button>
           <button
             className="btn-ghost btn-sm"
@@ -290,7 +290,6 @@ export default function QueuePage() {
       {queue.length === 0 ? (
         <div className="card">
           <EmptyState
-            icon="📋"
             title="ยังไม่มีใครลงคิววันนี้"
             hint="กดชื่อหมอนวดด้านบนเพื่อลงคิว — ลำดับจะเรียงตามเวลาที่ลงชื่อ"
           />
@@ -344,7 +343,7 @@ export default function QueuePage() {
                       <p className="text-lg font-bold text-ink-800">{row.therapist.name}</p>
                       {row.entry_type === "runner" && (
                         <span className="pill bg-amber-100 text-amber-800 ring-1 ring-amber-300">
-                          ⚡ หมอวิ่ง
+                          หมอวิ่ง
                         </span>
                       )}
                       {row.therapist.nickname && (
@@ -352,7 +351,7 @@ export default function QueuePage() {
                       )}
                       {m && <StatusPill status={m.derived} remainingMin={m.remainingMin} />}
                       {isNext && (
-                        <span className="pill bg-jade-600 text-white">🥇 คิวถัดไป</span>
+                        <span className="pill bg-jade-600 text-white">คิวถัดไป</span>
                       )}
                     </div>
                     <p className="mt-1.5 text-xs text-ink-400">
@@ -373,7 +372,7 @@ export default function QueuePage() {
                   <div className="flex flex-wrap items-center gap-2">
                     {row.status === "outside_job" ? (
                       <button className="btn-primary btn-sm" onClick={() => setReturning(row)}>
-                        ↩ กลับเข้าคิว
+                        กลับเข้าคิว
                       </button>
                     ) : (
                       <button
@@ -381,7 +380,7 @@ export default function QueuePage() {
                         disabled={busy || !!m?.activeSession}
                         onClick={() => void setStatus(row, "outside_job")}
                       >
-                        🟣 ออกไปงานร้านอื่น
+                        ออกไปงานร้านอื่น
                       </button>
                     )}
 
@@ -417,7 +416,7 @@ export default function QueuePage() {
       <Modal
         open={runnerOpen}
         onClose={() => setRunnerOpen(false)}
-        title="⚡ เรียกหมอวิ่งเข้ามา"
+        title="เรียกหมอวิ่งเข้ามา"
         footer={
           <div className="flex gap-3">
             <button className="btn-secondary flex-1" onClick={() => setRunnerOpen(false)}>
