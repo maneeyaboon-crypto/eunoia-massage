@@ -6,12 +6,13 @@ import { supabaseBrowser } from "@/lib/supabase/client";
 import RangePicker, { makeRange, type Range } from "@/components/RangePicker";
 import { Modal, EmptyState, Toast } from "@/components/ui";
 import { PAYMENT_LABEL, PAYMENT_METHODS } from "@/lib/status";
-import { baht, bangkokTimeToIso, hhmm, shortDate } from "@/lib/format";
+import { baht, bangkokToday, bangkokTimeToIso, hhmm, shortDate } from "@/lib/format";
 import type { PaymentMethod, TransactionRow } from "@/lib/types";
 
 export default function HistoryPage() {
   const { isOwner, therapists, services, refresh } = useShop();
   const supabase = supabaseBrowser();
+  const today = bangkokToday();
 
   const [range, setRange] = useState<Range>(() => makeRange("today"));
   const [rows, setRows] = useState<TransactionRow[]>([]);
@@ -354,6 +355,11 @@ export default function HistoryPage() {
                     {r.status === "voided" && (
                       <span className="ml-1 text-[10px] font-bold text-red-600">ยกเลิกแล้ว</span>
                     )}
+                    {r.is_backdated && (
+                      <span className="ml-1 rounded px-1 text-[10px] font-bold text-sky-700 ring-1 ring-sky-200">
+                        ย้อนหลัง
+                      </span>
+                    )}
                   </td>
                   <td className="table-td">
                     {shortDate(r.work_date)}
@@ -387,21 +393,21 @@ export default function HistoryPage() {
                   <td className="table-td">
                     {r.status !== "voided" && (
                       <div className="flex justify-end gap-1">
-                        {(isOwner || r.status === "active") && (
+                        {(isOwner || r.status === "active" || r.work_date === today) && (
                           <button className="btn-ghost btn-sm" onClick={() => openEdit(r)}>
                             แก้ไข
                           </button>
                         )}
-                        {isOwner && r.status === "finished" && (
-                        <button
-                          className="btn-ghost btn-sm text-red-500"
-                          onClick={() => {
-                            setVoidReason("");
-                            setVoiding(r);
-                          }}
-                        >
-                          ยกเลิก
-                        </button>
+                        {(isOwner || r.work_date === today) && (
+                          <button
+                            className="btn-ghost btn-sm text-red-500"
+                            onClick={() => {
+                              setVoidReason("");
+                              setVoiding(r);
+                            }}
+                          >
+                            ยกเลิก
+                          </button>
                         )}
                       </div>
                     )}
