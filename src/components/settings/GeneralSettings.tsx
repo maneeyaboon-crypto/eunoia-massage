@@ -118,7 +118,7 @@ export default function GeneralSettings() {
         )}
 
         <button className="btn-primary" disabled={busy} onClick={() => void save()}>
-          บันทึกการตั้งค่า
+          💾 บันทึกการตั้งค่า
         </button>
       </section>
 

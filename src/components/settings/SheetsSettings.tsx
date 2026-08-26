@@ -180,7 +180,7 @@ export default function SheetsSettings() {
 
         <div className="flex flex-wrap gap-2">
           <button className="btn-primary" disabled={busy !== null} onClick={() => void save()}>
-            บันทึกการเชื่อมต่อ
+            💾 บันทึกการเชื่อมต่อ
           </button>
           <button
             className="btn-ghost"
