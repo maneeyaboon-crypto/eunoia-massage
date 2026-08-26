@@ -134,7 +134,7 @@ export default function DashboardPage() {
             <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-400">
               คิวถัดไป
             </span>
-            <span className="text-xl font-bold text-ink-800">🥇 {rotation.next.name}</span>
+            <span className="text-xl font-bold text-ink-800">{rotation.next.name}</span>
             <span className="pill bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200">ว่าง</span>
             <button className="btn-primary btn-sm" onClick={() => openNew()}>
               จ่ายงานให้
@@ -151,7 +151,7 @@ export default function DashboardPage() {
 
       {settings.auto_finish_enabled && (
         <p className="rounded-xl bg-jade-50 px-4 py-2.5 text-xs text-jade-800 ring-1 ring-jade-200">
-          ⏱ โหมดปิดงานอัตโนมัติ <strong>เปิดอยู่</strong> — ครบเวลาแล้วระบบจะปิดงานให้เอง
+          โหมดปิดงานอัตโนมัติ <strong>เปิดอยู่</strong> — ครบเวลาแล้วระบบจะปิดงานให้เอง
           {settings.auto_finish_grace_min > 0
             ? ` (ผ่อนผัน ${settings.auto_finish_grace_min} นาที)`
             : ""}{" "}
@@ -177,7 +177,6 @@ export default function DashboardPage() {
           </div>
           {queue.length === 0 ? (
             <EmptyState
-              icon="📋"
               title="ยังไม่มีใครลงคิว"
               hint="ไปหน้า 'คิววันนี้' เพื่อลงชื่อหมอนวดก่อนเปิดรับลูกค้า"
             />
@@ -197,9 +196,17 @@ export default function DashboardPage() {
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-sm font-bold text-ink-800">
                         {m.name}
-                        {isNext && <span className="ml-1.5 text-jade-600">🥇</span>}
+                        {isNext && (
+                          <span className="ml-1.5 rounded px-1.5 py-0.5 text-[10px] font-bold text-jade-700 ring-1 ring-jade-200">
+                            คิวถัดไป
+                          </span>
+                        )}
                         {queue.find((q) => q.therapist_id === m.therapist_id)?.entry_type ===
-                          "runner" && <span className="ml-1 text-amber-600" title="หมอวิ่ง">⚡</span>}
+                          "runner" && (
+                          <span className="ml-1 rounded px-1.5 py-0.5 text-[10px] font-bold text-amber-700 ring-1 ring-amber-200">
+                            หมอวิ่ง
+                          </span>
+                        )}
                       </span>
                       <span className="block text-[11px] text-ink-400">
                         งาน {t.jobs} · {baht(t.pay)}
@@ -232,12 +239,11 @@ export default function DashboardPage() {
 
           {loading ? (
             <div className="card">
-              <EmptyState icon="⏳" title="กำลังโหลด…" />
+              <EmptyState title="กำลังโหลด…" />
             </div>
           ) : sortedActive.length === 0 ? (
             <div className="card">
               <EmptyState
-                icon="🌿"
                 title="ยังไม่มีลูกค้ากำลังใช้บริการ"
                 hint="กดปุ่ม + รับลูกค้า เพื่อเริ่มงานใหม่"
               />
@@ -268,7 +274,7 @@ export default function DashboardPage() {
           <section className="card card-pad">
             <p className="section-title">หมอนวดที่ว่างคนถัดไป</p>
             {rotation.next ? (
-              <p className="mt-1 text-2xl font-bold text-ink-800">🥇 {rotation.next.name}</p>
+              <p className="mt-1 text-2xl font-bold text-ink-800">{rotation.next.name}</p>
             ) : (
               <p className="mt-1 text-sm text-ink-400">ยังไม่มีใครว่าง</p>
             )}
@@ -308,7 +314,7 @@ export default function DashboardPage() {
             <section className="card ring-2 ring-amber-300">
               <div className="border-b border-sand-200 bg-amber-50 px-4 py-3">
                 <p className="section-title !text-amber-800">
-                  💰 รอเก็บเงิน ({unpaid.length})
+                  รอเก็บเงิน ({unpaid.length})
                 </p>
                 <p className="mt-0.5 text-[11px] text-amber-700">
                   ระบบปิดงานให้อัตโนมัติแล้ว — กดช่องทางที่รับเงินเพื่อปิดยอด
@@ -342,7 +348,7 @@ export default function DashboardPage() {
                           onClick={() => void settle(s.id, p.value)}
                           className="btn-secondary btn-sm"
                         >
-                          {p.icon} {p.label}
+                          {p.label}
                         </button>
                       ))}
                     </div>
