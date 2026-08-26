@@ -147,7 +147,7 @@ export default function ReportsPage() {
             />
           </div>
           <button className="btn-secondary" onClick={() => window.print()}>
-            🖨 พิมพ์รายงาน
+            พิมพ์รายงาน
           </button>
           {settings.sheets_webapp_url && (
             <button
@@ -155,7 +155,7 @@ export default function ReportsPage() {
               disabled={sheetBusy || loading}
               onClick={() => void sendToSheets()}
             >
-              {sheetBusy ? "กำลังส่ง…" : "📗 เซฟลง Google Sheets"}
+              {sheetBusy ? "กำลังส่ง…" : "เซฟลง Google Sheets"}
             </button>
           )}
           {isOwner && (
@@ -164,7 +164,7 @@ export default function ReportsPage() {
               disabled={loading}
               onClick={() => setConfirmOpen(true)}
             >
-              {closing ? "ปิดวันอีกครั้ง (อัปเดตยอดที่บันทึกไว้)" : "🔒 ปิดวัน"}
+              {closing ? "ปิดวันอีกครั้ง (อัปเดตยอดที่บันทึกไว้)" : "ปิดวัน"}
             </button>
           )}
         </div>
@@ -244,9 +244,9 @@ export default function ReportsPage() {
           </p>
         </div>
         {loading ? (
-          <EmptyState icon="⏳" title="กำลังโหลด…" />
+          <EmptyState title="กำลังโหลด…" />
         ) : statRows.length === 0 ? (
-          <EmptyState icon="🗂️" title="ไม่มีข้อมูลของวันนี้" />
+          <EmptyState title="ไม่มีข้อมูลของวันนี้" />
         ) : (
           <table className="w-full min-w-[900px]">
             <thead className="bg-sand-50">
@@ -270,8 +270,8 @@ export default function ReportsPage() {
                   <td className="table-td font-semibold">
                     {s.name}
                     {therapists.find((t) => t.id === s.therapist_id)?.is_runner && (
-                      <span className="ml-1 text-amber-600" title="หมอวิ่ง">
-                        ⚡
+                      <span className="ml-1 rounded px-1 py-0.5 text-[10px] font-semibold text-amber-700 ring-1 ring-amber-200">
+                        หมอวิ่ง
                       </span>
                     )}
                   </td>
@@ -312,7 +312,7 @@ export default function ReportsPage() {
           <p className="section-title">รายการทั้งวัน ({rows.length})</p>
         </div>
         {rows.length === 0 ? (
-          <EmptyState icon="🧾" title="ไม่มีรายการ" />
+          <EmptyState title="ไม่มีรายการ" />
         ) : (
           <table className="w-full min-w-[820px]">
             <thead className="bg-sand-50">
