@@ -135,7 +135,7 @@ export default function TherapistsSettings() {
                     {t.name}
                     {t.is_runner && (
                       <span className="ml-2 pill bg-amber-100 text-amber-800 ring-1 ring-amber-300">
-                        ⚡ หมอวิ่ง
+                        หมอวิ่ง
                       </span>
                     )}
                   </p>
@@ -270,7 +270,7 @@ export default function TherapistsSettings() {
                 onChange={(e) => setDraft({ ...draft, is_runner: e.target.checked })}
               />
               <span>
-                <span className="block text-sm font-medium">⚡ เป็นหมอวิ่ง</span>
+                <span className="block text-sm font-medium">เป็นหมอวิ่ง</span>
                 <span className="block text-xs text-ink-400">
                   หมอนวดนอกร้าน ไม่ต้องลงคิวทุกเช้า — จะขึ้นให้เลือกเฉพาะตอนคนในร้านไม่พอ
                 </span>

@@ -79,7 +79,7 @@ export default function SheetsSettings() {
   async function test() {
     setBusy("test");
     const r = await testSheetsConnection();
-    flash(r.ok ? "เชื่อมต่อสำเร็จ ✓ พร้อมส่งข้อมูลแล้ว" : r.error ?? "เชื่อมต่อไม่สำเร็จ", r.ok ? "ok" : "err");
+    flash(r.ok ? "เชื่อมต่อสำเร็จ — พร้อมส่งข้อมูลแล้ว" : r.error ?? "เชื่อมต่อไม่สำเร็จ", r.ok ? "ok" : "err");
     setBusy(null);
   }
 
