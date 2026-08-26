@@ -118,7 +118,7 @@ export default function GeneralSettings() {
         )}
 
         <button className="btn-primary" disabled={busy} onClick={() => void save()}>
-          💾 บันทึกการตั้งค่า
+          <span className="mr-1.5" aria-hidden>💾</span>บันทึกการตั้งค่า
         </button>
       </section>
 
