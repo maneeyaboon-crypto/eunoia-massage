@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useShop } from "@/components/ShopProvider";
 import GeneralSettings from "@/components/settings/GeneralSettings";
 import ServicesSettings from "@/components/settings/ServicesSettings";
+import PinsSettings from "@/components/settings/PinsSettings";
 import SheetsSettings from "@/components/settings/SheetsSettings";
 import TherapistsSettings from "@/components/settings/TherapistsSettings";
 import UsersSettings from "@/components/settings/UsersSettings";
 import { SegButtons } from "@/components/ui";
 
-type Tab = "general" | "services" | "therapists" | "users" | "sheets";
+type Tab = "general" | "services" | "therapists" | "users" | "pins" | "sheets";
 
 export default function SettingsPage() {
   const { isOwner } = useShop();
@@ -51,6 +52,7 @@ export default function SettingsPage() {
           { value: "services", label: "บริการ" },
           { value: "therapists", label: "หมอนวด" },
           { value: "users", label: "ผู้ใช้งาน" },
+          { value: "pins", label: "PIN เข้าระบบ" },
           { value: "sheets", label: "Google Sheets" },
         ]}
       />
@@ -59,6 +61,7 @@ export default function SettingsPage() {
       {tab === "services" && <ServicesSettings />}
       {tab === "therapists" && <TherapistsSettings />}
       {tab === "users" && <UsersSettings />}
+      {tab === "pins" && <PinsSettings />}
       {tab === "sheets" && <SheetsSettings />}
     </div>
   );
