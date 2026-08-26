@@ -108,6 +108,18 @@ export interface MassageSession {
   created_at: string;
 }
 
+/** PIN เข้าระบบ — ไม่มีตัวเลข PIN และไม่มี hash อยู่ในนี้ */
+export interface LoginPinRow {
+  id: string;
+  label: string;
+  profile_id: string;
+  email: string;
+  full_name: string | null;
+  role: Role;
+  is_active: boolean;
+  updated_at: string;
+}
+
 export interface ShopSettings {
   auto_finish_enabled: boolean;
   auto_finish_grace_min: number;
