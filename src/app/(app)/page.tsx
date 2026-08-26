@@ -10,7 +10,7 @@ import WaitingPanel from "@/components/WaitingPanel";
 import ActivityPanel from "@/components/ActivityPanel";
 import { StatCard, StatusPill, EmptyState, Toast } from "@/components/ui";
 import { supabaseBrowser } from "@/lib/supabase/client";
-import { PAYMENT_METHODS } from "@/lib/status";
+import { PAYMENT_METHODS, STATUS } from "@/lib/status";
 import { baht, hhmm } from "@/lib/format";
 import { dayTotals, totalsByTherapist, totalsFor } from "@/lib/derive";
 import type { MassageSession } from "@/lib/types";
@@ -188,10 +188,16 @@ export default function DashboardPage() {
                 return (
                   <li
                     key={m.therapist_id}
-                    className={`flex items-center gap-3 px-4 py-3 ${isNext ? "bg-jade-50" : ""}`}
+                    className={`flex items-center gap-3 border-l-4 px-4 py-3 ${
+                      STATUS[m.derived].border
+                    } ${isNext ? "bg-jade-50" : ""}`}
                   >
-                    <span className="w-7 shrink-0 text-center text-sm font-bold tabular-nums text-ink-300">
-                      #{m.position}
+                    <span
+                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold tabular-nums ${
+                        isNext ? "bg-jade-600 text-white" : "bg-sand-100 text-ink-400"
+                      }`}
+                    >
+                      {m.position}
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-sm font-bold text-ink-800">
