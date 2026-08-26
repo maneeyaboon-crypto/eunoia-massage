@@ -213,7 +213,7 @@ export default function HistoryPage() {
           </p>
         </div>
         <button className="btn-secondary" onClick={exportCsv}>
-          ⬇ บันทึกเป็นไฟล์ Excel (CSV)
+          บันทึกเป็นไฟล์ Excel (CSV)
         </button>
       </div>
 
@@ -309,9 +309,9 @@ export default function HistoryPage() {
 
       <section className="card overflow-x-auto">
         {loading ? (
-          <EmptyState icon="⏳" title="กำลังโหลด…" />
+          <EmptyState title="กำลังโหลด…" />
         ) : filtered.length === 0 ? (
-          <EmptyState icon="🧾" title="ไม่มีรายการตามเงื่อนไข" />
+          <EmptyState title="ไม่มีรายการตามเงื่อนไข" />
         ) : (
           <table className="w-full min-w-[1080px]">
             <thead className="border-b border-sand-200 bg-sand-50">
@@ -371,7 +371,11 @@ export default function HistoryPage() {
                   <td className="table-td">
                     {r.service_name_th || r.service_name_en}
                     <span className="ml-1 text-xs text-ink-400">{r.duration_min}น.</span>
-                    {r.is_customer_request && <span className="ml-1 text-xs text-jade-600">★</span>}
+                    {r.is_customer_request && (
+                    <span className="ml-1 rounded px-1 py-0.5 text-[10px] font-semibold text-jade-700 ring-1 ring-jade-200">
+                      ลูกค้าขอ
+                    </span>
+                  )}
                   </td>
                   <td className="table-td text-right tabular-nums">{baht(r.original_price)}</td>
                   <td className="table-td text-right font-semibold tabular-nums">
