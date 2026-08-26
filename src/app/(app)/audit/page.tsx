@@ -104,9 +104,9 @@ export default function AuditPage() {
 
       <section className="card overflow-x-auto">
         {loading ? (
-          <EmptyState icon="⏳" title="กำลังโหลด…" />
+          <EmptyState title="กำลังโหลด…" />
         ) : rows.length === 0 ? (
-          <EmptyState icon="🔍" title="ยังไม่มีบันทึกการแก้ไข" />
+          <EmptyState title="ยังไม่มีบันทึกการแก้ไข" />
         ) : (
           <table className="w-full min-w-[900px]">
             <thead className="border-b border-sand-200 bg-sand-50">
