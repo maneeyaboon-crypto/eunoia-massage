@@ -6,7 +6,7 @@
  *   1. Daily queue order = check-in order (Admin may re-order).
  *   2. A pointer remembers who received the LAST customer.
  *   3. Scanning starts at the person AFTER the pointer — never from #1 again.
- *   4. Anyone not 🟢 Available is skipped (busy / finishing soon / expected
+ *   4. Anyone not Available is skipped (busy / finishing soon / expected
  *      finished / break / outside job / off duty).
  *   5. The first Available therapist found gets the customer.
  *   6. Being skipped is temporary — nobody leaves the rotation.
@@ -72,10 +72,10 @@ export function remainingMinutes(expectedFinishAt: string, now: Date): number {
 
 /**
  * Countdown colour bands.
- *   > 20 min      → 🔴 Busy
- *   10–20 min     → 🟠 Finishing Soon
- *   1–10 min      → 🔴 Urgent (very close to done)
- *   <= 0 min      → 🟢 Expected Finished — waiting for Admin confirmation
+ *   > 20 min      → Busy
+ *   10–20 min     → Finishing Soon
+ *   1–10 min      → Urgent (very close to done)
+ *   <= 0 min      → Expected Finished — waiting for Admin confirmation
  * The therapist NEVER flips to Available on its own; Admin must press Finish.
  */
 export function statusFromRemaining(remaining: number): DerivedStatus {

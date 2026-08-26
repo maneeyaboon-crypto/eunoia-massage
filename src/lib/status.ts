@@ -1,6 +1,7 @@
 import type { DerivedStatus, ManualStatus, PaymentMethod } from "./types";
 
 interface StatusMeta {
+  /** สีจุดสถานะ — เป็นคลาส Tailwind ไม่ใช่อีโมจิ */
   dot: string;
   labelEn: string;
   labelTh: string;
@@ -14,7 +15,7 @@ interface StatusMeta {
 
 export const STATUS: Record<DerivedStatus, StatusMeta> = {
   available: {
-    dot: "🟢",
+    dot: "bg-emerald-500",
     labelEn: "Available",
     labelTh: "ว่าง",
     badge: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
@@ -22,7 +23,7 @@ export const STATUS: Record<DerivedStatus, StatusMeta> = {
     solid: "bg-emerald-500",
   },
   busy: {
-    dot: "🔴",
+    dot: "bg-red-500",
     labelEn: "Busy",
     labelTh: "กำลังนวด",
     badge: "bg-red-50 text-red-700 ring-1 ring-red-200",
@@ -30,7 +31,7 @@ export const STATUS: Record<DerivedStatus, StatusMeta> = {
     solid: "bg-red-500",
   },
   finishing_soon: {
-    dot: "🟠",
+    dot: "bg-orange-500",
     labelEn: "Finishing Soon",
     labelTh: "ใกล้เสร็จ",
     badge: "bg-orange-50 text-orange-700 ring-1 ring-orange-200",
@@ -38,7 +39,7 @@ export const STATUS: Record<DerivedStatus, StatusMeta> = {
     solid: "bg-orange-500",
   },
   urgent: {
-    dot: "🔴",
+    dot: "bg-rose-600",
     labelEn: "Almost Done",
     labelTh: "ใกล้เสร็จมาก",
     badge: "bg-rose-100 text-rose-800 ring-1 ring-rose-300",
@@ -46,7 +47,7 @@ export const STATUS: Record<DerivedStatus, StatusMeta> = {
     solid: "bg-rose-600",
   },
   expected_finished: {
-    dot: "🟢",
+    dot: "bg-green-600",
     labelEn: "Expected Finished",
     labelTh: "หมดเวลา — รอกด Finish",
     badge: "bg-green-100 text-green-800 ring-1 ring-green-300 animate-pulse",
@@ -54,7 +55,7 @@ export const STATUS: Record<DerivedStatus, StatusMeta> = {
     solid: "bg-green-600",
   },
   break: {
-    dot: "⚪",
+    dot: "bg-slate-400",
     labelEn: "Break",
     labelTh: "พัก",
     badge: "bg-slate-100 text-slate-600 ring-1 ring-slate-200",
@@ -62,7 +63,7 @@ export const STATUS: Record<DerivedStatus, StatusMeta> = {
     solid: "bg-slate-400",
   },
   outside_job: {
-    dot: "🟣",
+    dot: "bg-purple-500",
     labelEn: "Outside Job",
     labelTh: "งานร้านอื่น",
     badge: "bg-purple-50 text-purple-700 ring-1 ring-purple-200",
@@ -70,7 +71,7 @@ export const STATUS: Record<DerivedStatus, StatusMeta> = {
     solid: "bg-purple-500",
   },
   off_duty: {
-    dot: "⚫",
+    dot: "bg-slate-600",
     labelEn: "Off Duty",
     labelTh: "เลิกงาน",
     badge: "bg-slate-200 text-slate-700 ring-1 ring-slate-300",
@@ -80,17 +81,17 @@ export const STATUS: Record<DerivedStatus, StatusMeta> = {
 };
 
 export const MANUAL_STATUS_OPTIONS: Array<{ value: ManualStatus; label: string }> = [
-  { value: "available", label: "🟢 ว่าง" },
-  { value: "break", label: "⚪ พัก" },
-  { value: "outside_job", label: "🟣 งานร้านอื่น" },
-  { value: "off_duty", label: "⚫ เลิกงาน" },
+  { value: "available", label: "ว่าง" },
+  { value: "break", label: "พัก" },
+  { value: "outside_job", label: "งานร้านอื่น" },
+  { value: "off_duty", label: "เลิกงาน" },
 ];
 
-export const PAYMENT_METHODS: Array<{ value: PaymentMethod; label: string; icon: string }> = [
-  { value: "cash", label: "เงินสด", icon: "💵" },
-  { value: "qr", label: "QR / โอน", icon: "📱" },
-  { value: "card", label: "บัตร", icon: "💳" },
-  { value: "other", label: "อื่น ๆ", icon: "•" },
+export const PAYMENT_METHODS: Array<{ value: PaymentMethod; label: string }> = [
+  { value: "cash", label: "เงินสด" },
+  { value: "qr", label: "QR / โอน" },
+  { value: "card", label: "บัตร" },
+  { value: "other", label: "อื่น ๆ" },
 ];
 
 export const PAYMENT_LABEL: Record<PaymentMethod, string> = {
