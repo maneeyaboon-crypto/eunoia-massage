@@ -215,9 +215,9 @@ export default function FinancePage() {
           <p className="section-title">รายได้หมอนวด — กดชื่อเพื่อดูรายละเอียดแต่ละงาน</p>
         </div>
         {loading ? (
-          <EmptyState icon="⏳" title="กำลังโหลด…" />
+          <EmptyState title="กำลังโหลด…" />
         ) : byTherapist.length === 0 ? (
-          <EmptyState icon="📊" title="ไม่มีรายการในช่วงนี้" />
+          <EmptyState title="ไม่มีรายการในช่วงนี้" />
         ) : (
           <table className="w-full min-w-[760px]">
             <thead className="bg-sand-50">
