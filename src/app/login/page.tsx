@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import LoginForm from "./LoginForm";
+import LoginPanel from "./LoginPanel";
 
 export default function LoginPage() {
   return (
@@ -18,7 +18,7 @@ export default function LoginPage() {
             <div className="card card-pad text-center text-sm text-ink-400">กำลังโหลด…</div>
           }
         >
-          <LoginForm />
+          <LoginPanel />
         </Suspense>
       </div>
     </main>
