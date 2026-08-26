@@ -1,7 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-const PUBLIC_PATHS = ["/login", "/auth"];
+// /api/pin-login ต้องเรียกได้ทั้งที่ยังไม่ได้เข้าระบบ — ไม่งั้นจะเข้าด้วย PIN ไม่ได้เลย
+const PUBLIC_PATHS = ["/login", "/auth", "/api/pin-login"];
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
