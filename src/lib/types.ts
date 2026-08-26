@@ -102,6 +102,8 @@ export interface MassageSession {
   is_runner_job: boolean;
   /** ระบบปิดงานให้เองเมื่อครบเวลา — ยังไม่ได้เก็บเงิน */
   auto_finished: boolean;
+  /** กรอกย้อนหลัง — เวลานวดจบไปแล้วตอนบันทึก บันทึกเป็นเสร็จแล้วทันที */
+  is_backdated: boolean;
   void_reason: string | null;
   created_at: string;
 }
@@ -184,6 +186,7 @@ export interface TransactionRow {
   group_index: number;
   is_runner_job: boolean;
   auto_finished: boolean;
+  is_backdated: boolean;
   service_id: string | null;
   service_name_en: string;
   service_name_th: string | null;
