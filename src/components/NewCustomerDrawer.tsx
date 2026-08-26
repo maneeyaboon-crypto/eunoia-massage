@@ -383,7 +383,7 @@ export default function NewCustomerDrawer({
           {shortage > 0 && (
             <div className="mt-3 rounded-2xl bg-amber-50 p-4 ring-1 ring-amber-300">
               <p className="font-bold text-amber-900">
-                ⚡ หมอนวดในร้านไม่พอ — ขาดอีก {shortage} คน
+                หมอนวดในร้านไม่พอ — ขาดอีก {shortage} คน
               </p>
               <p className="mt-0.5 text-sm text-amber-800">
                 กดปุ่ม <strong>เรียกหมอวิ่ง</strong> ในแถวที่ยังว่าง หรือลดจำนวนลูกค้าลง
@@ -454,7 +454,7 @@ export default function NewCustomerDrawer({
                         <span className="text-base font-bold text-ink-800">{th?.name}</span>
                         {r.isRunnerJob && (
                           <span className="pill bg-amber-100 text-amber-800 ring-1 ring-amber-300">
-                            ⚡ หมอวิ่ง
+                            หมอวิ่ง
                           </span>
                         )}
                         {m && !r.isRunnerJob && (
@@ -480,7 +480,7 @@ export default function NewCustomerDrawer({
                           disabled={busy}
                           onClick={() => void callRunner(r.key, "")}
                         >
-                          ⚡ เรียกหมอวิ่ง
+                          เรียกหมอวิ่ง
                         </button>
                         <button
                           className="btn-ghost btn-sm text-amber-700"
@@ -627,7 +627,7 @@ export default function NewCustomerDrawer({
           <p className="section-title mb-2">4. เวลาเริ่มนวด</p>
           <div className="flex flex-wrap items-end gap-3">
             <button className="btn-primary" onClick={() => setStartTime(nowHHmm())}>
-              ⏱ เริ่มเดี๋ยวนี้
+              เริ่มเดี๋ยวนี้
             </button>
             <div>
               <label className="label">หรือกำหนดเอง</label>
@@ -647,7 +647,7 @@ export default function NewCustomerDrawer({
           </div>
           {isBackdated && (
             <p className="mt-3 rounded-xl bg-sky-50 px-4 py-3 text-xs leading-relaxed text-sky-900 ring-1 ring-sky-200">
-              🕐 <strong>งานย้อนหลัง</strong> — เวลาที่กรอกจบไปแล้ว ระบบจะบันทึกเป็น{" "}
+              <strong>งานย้อนหลัง</strong> — เวลาที่กรอกจบไปแล้ว ระบบจะบันทึกเป็น{" "}
               <strong>&quot;เสร็จแล้ว&quot;</strong> ทันที หมอนวดจะไม่ถูกจับเป็น &quot;กำลังนวด&quot;
               <br />
               คิวยังเดินตามลำดับที่กรอกตามปกติ · ไปเก็บเงินได้ที่กล่อง{" "}
@@ -685,7 +685,7 @@ export default function NewCustomerDrawer({
       <Modal
         open={runnerFor !== null}
         onClose={() => setRunnerFor(null)}
-        title="⚡ เรียกหมอวิ่งเข้ามา"
+        title="เรียกหมอวิ่งเข้ามา"
         footer={
           <div className="flex gap-3">
             <button className="btn-secondary flex-1" onClick={() => setRunnerFor(null)}>

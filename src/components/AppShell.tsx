@@ -8,13 +8,13 @@ import { thaiDateLong } from "@/lib/format";
 import { useState } from "react";
 
 const NAV = [
-  { href: "/", label: "หน้าร้าน", en: "Dashboard", icon: "🏠", ownerOnly: false },
-  { href: "/queue", label: "คิววันนี้", en: "Queue", icon: "📋", ownerOnly: false },
-  { href: "/history", label: "ประวัติ", en: "History", icon: "🧾", ownerOnly: false },
-  { href: "/finance", label: "การเงิน", en: "Finance", icon: "📊", ownerOnly: true },
-  { href: "/reports", label: "รายงาน / ปิดวัน", en: "Reports", icon: "🗂️", ownerOnly: true },
-  { href: "/settings", label: "ตั้งค่า", en: "Settings", icon: "⚙️", ownerOnly: false },
-  { href: "/audit", label: "บันทึกการแก้ไข", en: "Audit", icon: "🔍", ownerOnly: true },
+  { href: "/", label: "หน้าร้าน", en: "Dashboard", ownerOnly: false },
+  { href: "/queue", label: "คิววันนี้", en: "Queue", ownerOnly: false },
+  { href: "/history", label: "ประวัติ", en: "History", ownerOnly: false },
+  { href: "/finance", label: "การเงิน", en: "Finance", ownerOnly: true },
+  { href: "/reports", label: "รายงาน / ปิดวัน", en: "Reports", ownerOnly: true },
+  { href: "/settings", label: "ตั้งค่า", en: "Settings", ownerOnly: false },
+  { href: "/audit", label: "บันทึกการแก้ไข", en: "Audit", ownerOnly: true },
 ];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
@@ -105,7 +105,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       : "text-ink-500 hover:bg-sand-100"
                   }`}
                 >
-                  <span aria-hidden>{n.icon}</span>
                   <span>{n.label}</span>
                 </Link>
               );

@@ -84,7 +84,7 @@ export function FinishDialog({
               ยกเลิก
             </button>
             <button className="btn-primary flex-1" disabled={busy} onClick={() => void submit()}>
-              ✓ ปิดงาน · {baht(finalNum)}
+              ปิดงาน · {baht(finalNum)}
             </button>
           </div>
         </div>
@@ -160,9 +160,6 @@ export function FinishDialog({
                     : "bg-white ring-1 ring-sand-300 hover:bg-sand-50"
                 }`}
               >
-                <span className="mr-1" aria-hidden>
-                  {p.icon}
-                </span>
                 {p.label}
               </button>
             ))}

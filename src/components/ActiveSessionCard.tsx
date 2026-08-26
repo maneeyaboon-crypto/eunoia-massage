@@ -41,7 +41,7 @@ export default function ActiveSessionCard({
               {therapist?.name ?? "—"}
               {session.is_runner_job && (
                 <span className="pill bg-amber-100 text-amber-800 ring-1 ring-amber-300">
-                  ⚡ หมอวิ่ง
+                  หมอวิ่ง
                 </span>
               )}
               {session.group_size > 1 && (
@@ -110,7 +110,7 @@ export default function ActiveSessionCard({
 
         {session.note && (
           <p className="mt-2 rounded-lg bg-sand-100 px-3 py-2 text-xs text-ink-500">
-            📝 {session.note}
+            {session.note}
           </p>
         )}
 
@@ -125,7 +125,7 @@ export default function ActiveSessionCard({
 
         <div className="mt-3 flex flex-wrap gap-2">
           <button className="btn-primary flex-1" onClick={onFinish}>
-            ✓ นวดเสร็จ
+            นวดเสร็จ
           </button>
           {showQuickExtend && onQuickExtend ? (
             <>

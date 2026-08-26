@@ -70,7 +70,7 @@ export default function WaitingPanel({ onSeat }: { onSeat: (p: Prefill) => void 
       </div>
 
       {waiting.length === 0 ? (
-        <EmptyState icon="🪑" title="ไม่มีลูกค้ารอคิว" />
+        <EmptyState title="ไม่มีลูกค้ารอคิว" />
       ) : (
         <ul className="divide-y divide-sand-100">
           {waiting.map((w) => {
@@ -96,7 +96,7 @@ export default function WaitingPanel({ onSeat }: { onSeat: (p: Prefill) => void 
                         {waitFor(w.requested_therapist_id)}
                       </span>
                     </p>
-                    {w.note && <p className="mt-1 text-[11px] text-ink-400">📝 {w.note}</p>}
+                    {w.note && <p className="mt-1 text-[11px] text-ink-400">{w.note}</p>}
                   </div>
                   <div className="flex shrink-0 flex-col gap-1">
                     <button

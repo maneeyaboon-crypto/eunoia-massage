@@ -15,7 +15,7 @@ export default function ActivityPanel({ limit = 25 }: { limit?: number }) {
         <p className="section-title">ไทม์ไลน์วันนี้</p>
       </div>
       {rows.length === 0 ? (
-        <EmptyState icon="🕘" title="ยังไม่มีกิจกรรมวันนี้" />
+        <EmptyState title="ยังไม่มีกิจกรรมวันนี้" />
       ) : (
         <ol className="max-h-[420px] divide-y divide-sand-100 overflow-y-auto">
           {rows.map((e) => {

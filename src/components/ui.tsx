@@ -18,7 +18,7 @@ export function StatusPill({
     remainingMin != null && (status === "busy" || status === "finishing_soon" || status === "urgent");
   return (
     <span className={`pill ${meta.badge} ${size === "sm" ? "text-[10px]" : ""}`}>
-      <span aria-hidden>{meta.dot}</span>
+      <span className={`h-2 w-2 shrink-0 rounded-full ${meta.dot}`} aria-hidden />
       <span>{meta.labelTh}</span>
       {showTime && <span className="tabular-nums">· {remainingMin} น.</span>}
     </span>
@@ -112,7 +112,7 @@ export function Drawer({
             {subtitle && <p className="mt-0.5 text-sm text-ink-400">{subtitle}</p>}
           </div>
           <button onClick={onClose} className="btn-ghost btn-sm shrink-0" aria-label="ปิด">
-            ✕ ปิด
+            ปิด
           </button>
         </header>
         <div className="flex-1 overflow-y-auto px-5 py-5">{children}</div>
@@ -165,14 +165,13 @@ export function Modal({
   );
 }
 
-export function EmptyState({ icon, title, hint }: { icon: string; title: string; hint?: string }) {
+/** สถานะว่าง — ใช้ตัวหนังสือล้วน ไม่มีอีโมจิ */
+export function EmptyState({ title, hint }: { title: string; hint?: string }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-2 py-10 text-center">
-      <span className="text-3xl opacity-40" aria-hidden>
-        {icon}
-      </span>
+    <div className="flex flex-col items-center justify-center gap-2 px-6 py-10 text-center">
+      <span className="h-px w-10 bg-sand-300" aria-hidden />
       <p className="text-sm font-medium text-ink-500">{title}</p>
-      {hint && <p className="max-w-xs text-xs text-ink-400">{hint}</p>}
+      {hint && <p className="max-w-xs text-xs leading-relaxed text-ink-400">{hint}</p>}
     </div>
   );
 }
