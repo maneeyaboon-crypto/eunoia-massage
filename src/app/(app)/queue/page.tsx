@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { useShop } from "@/components/ShopProvider";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import { StatusPill, Modal, EmptyState, Toast } from "@/components/ui";
-import { MANUAL_STATUS_OPTIONS } from "@/lib/status";
+import { MANUAL_STATUS_OPTIONS, STATUS } from "@/lib/status";
 import { baht, hhmm } from "@/lib/format";
 import { totalsByTherapist, totalsFor } from "@/lib/derive";
 import type { ManualStatus, QueueRow } from "@/lib/types";
@@ -286,6 +286,33 @@ export default function QueuePage() {
         )}
       </section>
 
+      {/* คำอธิบายสี — ดูแถบสีซ้ายมือของแต่ละแถวได้เลยว่าใครอยู่สถานะไหน */}
+      {queue.length > 0 && (
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl bg-white px-4 py-2.5 text-xs shadow-card ring-1 ring-sand-200">
+          <span className="font-semibold text-ink-500">สีแถบซ้าย</span>
+          {(
+            [
+              "available",
+              "busy",
+              "finishing_soon",
+              "expected_finished",
+              "break",
+              "outside_job",
+              "off_duty",
+            ] as const
+          ).map((k) => (
+            <span key={k} className="flex items-center gap-1.5 text-ink-500">
+              <span className={`h-2.5 w-2.5 rounded-full ${STATUS[k].dot}`} aria-hidden />
+              {STATUS[k].labelTh}
+            </span>
+          ))}
+          <span className="flex items-center gap-1.5 text-ink-500">
+            <span className="h-2.5 w-2.5 rounded-full bg-jade-600 ring-2 ring-jade-200" aria-hidden />
+            กรอบเขียว = คิวถัดไป
+          </span>
+        </div>
+      )}
+
       {/* Queue cards */}
       {queue.length === 0 ? (
         <div className="card">
@@ -307,9 +334,11 @@ export default function QueuePage() {
                 onDragStart={() => setDragId(row.therapist_id)}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={() => void dropOn(row)}
-                className={`card overflow-hidden border-l-4 ${
-                  m ? (isNext ? "border-l-jade-600" : `border-l-transparent`) : "border-l-transparent"
-                } ${dragId === row.therapist_id ? "opacity-50" : ""}`}
+                className={`card overflow-hidden border-l-[6px] ${
+                  m ? STATUS[m.derived].border : "border-l-sand-300"
+                } ${isNext ? "bg-jade-50/60 ring-2 ring-jade-500" : ""} ${
+                  dragId === row.therapist_id ? "opacity-50" : ""
+                }`}
               >
                 <div className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center">
                   {/* rank + reorder */}
@@ -332,8 +361,14 @@ export default function QueuePage() {
                         ▼
                       </button>
                     </div>
-                    <span className="w-12 shrink-0 text-center text-2xl font-bold tabular-nums text-ink-300">
-                      #{row.position}
+                    <span
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-xl font-bold tabular-nums ${
+                        isNext
+                          ? "bg-jade-600 text-white shadow-card"
+                          : "bg-sand-100 text-ink-400 ring-1 ring-sand-300"
+                      }`}
+                    >
+                      {row.position}
                     </span>
                   </div>
 
