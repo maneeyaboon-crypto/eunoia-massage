@@ -123,7 +123,9 @@ $$;
 grant execute on function auto_finish_due() to authenticated;
 
 -- รายการที่ปิดแล้วแต่ยังไม่ได้ระบุช่องทางชำระ = ยังไม่ได้เก็บเงิน
-create or replace view v_unpaid_sessions as
+-- drop ก่อน เพราะ s.* ทำให้จำนวนคอลัมน์เปลี่ยนได้เมื่อ massage_sessions มีคอลัมน์ใหม่
+drop view if exists v_unpaid_sessions;
+create view v_unpaid_sessions as
 select s.*, t.name as therapist_name
 from massage_sessions s
 join therapists t on t.id = s.therapist_id
