@@ -192,6 +192,10 @@ export default function NewCustomerDrawer({
   const shortage = rows.filter((r) => !r.therapistId).length;
   const startIso = bangkokTimeToIso(workDate, startTime);
   const longestDur = rows.reduce((m, r) => Math.max(m, calc(r).dur), 0);
+  /** เวลาที่กรอกจบไปแล้ว = งานย้อนหลัง (บันทึกเป็นเสร็จแล้วทันที) */
+  const isBackdated =
+    longestDur > 0 &&
+    new Date(startIso).getTime() + longestDur * 60000 <= Date.now();
   const finishIso = new Date(new Date(startIso).getTime() + longestDur * 60000).toISOString();
 
   /* ---------------- บันทึก ---------------- */
@@ -641,6 +645,15 @@ export default function NewCustomerDrawer({
               </p>
             </div>
           </div>
+          {isBackdated && (
+            <p className="mt-3 rounded-xl bg-sky-50 px-4 py-3 text-xs leading-relaxed text-sky-900 ring-1 ring-sky-200">
+              🕐 <strong>งานย้อนหลัง</strong> — เวลาที่กรอกจบไปแล้ว ระบบจะบันทึกเป็น{" "}
+              <strong>&quot;เสร็จแล้ว&quot;</strong> ทันที หมอนวดจะไม่ถูกจับเป็น &quot;กำลังนวด&quot;
+              <br />
+              คิวยังเดินตามลำดับที่กรอกตามปกติ · ไปเก็บเงินได้ที่กล่อง{" "}
+              <strong>&quot;รอเก็บเงิน&quot;</strong> หน้าร้าน
+            </p>
+          )}
           <div className="mt-4">
             <label className="label">โน้ตของกลุ่มนี้ (เช่น ขอนวดหนัก / มาเป็นครอบครัว)</label>
             <input className="input" value={note} onChange={(e) => setNote(e.target.value)} />
